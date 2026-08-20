@@ -1,172 +1,52 @@
-```html
 <!DOCTYPE html>
 <html>
 <head>
-    <title>chilldoge0's site</title>
-
-    <style>
-        body {
-            background:#151515;
-            color:#ddd;
-            font-family:Arial;
-            max-width:700px;
-            margin:40px auto;
-            padding:20px;
-        }
-
-        h1,h2 {
-            color:#39d98a;
-        }
-
-        input, textarea {
-            width:100%;
-            box-sizing:border-box;
-            padding:10px;
-            margin:5px 0;
-            background:#222;
-            color:white;
-            border:1px solid #444;
-        }
-
-        textarea {
-            height:80px;
-        }
-
-        button {
-            background:#39d98a;
-            border:0;
-            padding:10px 20px;
-            cursor:pointer;
-            font-weight:bold;
-        }
-
-        .message {
-            background:#1d1d1d;
-            border:1px solid #333;
-            padding:15px;
-            margin-top:10px;
-        }
-
-        .name {
-            color:#39d98a;
-            font-weight:bold;
-        }
-    </style>
+    <title>chilldoge0</title>
 </head>
 
-<body>
+<body bgcolor="#eeeeee" text="#222222">
 
-<h1>yo 👋</h1>
+<center>
 
-<p>welcome to chilldoge0's site</p>
+    <h1>chilldoge0</h1>
+    <p>just some random website i made lol</p>
 
-<h2>💬 Messages</h2>
+    <hr width="60%">
 
-<input id="username" placeholder="Username">
+    <h2>about me</h2>
 
-<textarea id="message" placeholder="Write a message"></textarea>
+    <p>
+        hey, i'm chilldoge0<br>
+        i'm from Greece and i like games, football, basketball and computers.
+    </p>
 
-<button onclick="sendMessage()">Send</button>
+    <h2>stuff i like</h2>
 
-<div id="messages"></div>
+    <p>
+        🎮 Roblox<br>
+        ⛏️ Minecraft<br>
+        ⚽ Football<br>
+        🏀 Basketball<br>
+        💻 Making random websites
+    </p>
 
+    <h2>bloxxia</h2>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <p>username: <b>chilldoge0</b></p>
 
-<script>
+    <h2>random stuff</h2>
 
-const supabaseUrl =
-"https://idwfzwtibvqvfsyzptyu.supabase.co";
+    <p>
+        sometimes i code things for no reason<br>
+        sometimes i play old games<br>
+        sometimes i just mess around
+    </p>
 
-const supabaseKey =
-"sb_publishable_pRteYwdrBD7jByjgGrzApA_rIb2ZHqe";
+    <hr width="60%">
 
-const db =
-supabase.createClient(supabaseUrl, supabaseKey);
+    <p><small>made by chilldoge0 • probably 2019</small></p>
 
-
-async function sendMessage() {
-
-    let username =
-    document.getElementById("username").value.trim();
-
-    let message =
-    document.getElementById("message").value.trim();
-
-    if (!username || !message) {
-        alert("Enter a username and message!");
-        return;
-    }
-
-    const { error } = await db
-        .from("messages")
-        .insert({
-            username: username,
-            message: message
-        });
-
-    if (error) {
-        alert("Message could not be sent.");
-        console.error(error);
-        return;
-    }
-
-    document.getElementById("message").value = "";
-
-    loadMessages();
-}
-
-
-async function loadMessages() {
-
-    const { data, error } = await db
-        .from("messages")
-        .select("*")
-        .order("created_at", {
-            ascending:false
-        });
-
-    if (error) {
-        console.error(error);
-        return;
-    }
-
-    let box =
-    document.getElementById("messages");
-
-    box.innerHTML = "";
-
-    data.forEach(function(msg) {
-
-        let messageBox =
-        document.createElement("div");
-
-        messageBox.className = "message";
-
-        let name =
-        document.createElement("div");
-
-        name.className = "name";
-        name.textContent = msg.username;
-
-        let text =
-        document.createElement("div");
-
-        text.textContent = msg.message;
-
-        messageBox.appendChild(name);
-        messageBox.appendChild(text);
-
-        box.appendChild(messageBox);
-
-    });
-}
-
-
-loadMessages();
-
-</script>
+</center>
 
 </body>
 </html>
-```
